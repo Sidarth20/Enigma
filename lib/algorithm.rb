@@ -11,14 +11,22 @@ class Algorithm
   end
 
   def random_num_generator
-    number = 5.times.map {rand(0..4)}.join
+    5.times.map {rand(0..4)}.join
   end
 
   def a_key
-    a = random_num_generator[0..1]
+    random_num_generator[0..1]
   end
 
   def b_key
-    a = random_num_generator[1..2]
+    random_num_generator[1..2]
+  end
+
+  def c_key
+    random_num_generator[2..3]
+  end
+
+  def d_key
+    random_num_generator[3..4]
   end
 end

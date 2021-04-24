@@ -45,10 +45,26 @@ RSpec.describe Algorithm do
   end
 
   describe '#b_key' do
-    it 'creates the A key' do
+    it 'creates the B key' do
       algorithm = Algorithm.new('040895', "hello world")
 
       expect(algorithm.b_key.length).to eq(2)
+    end
+  end
+
+  describe '#c_key' do
+    it 'creates the C key' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.c_key.length).to eq(2)
+    end
+  end
+
+  describe '#d_key' do
+    it 'creates the D key' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.d_key.length).to eq(2)
     end
   end
 end
