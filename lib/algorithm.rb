@@ -29,4 +29,12 @@ class Algorithm
   def d_key
     random_num_generator[3..4]
   end
+
+  def date_squared
+    @date.to_i ** 2
+  end
+
+  def date_offset
+    date_squared.to_s[-4..-1].to_i
+  end
 end

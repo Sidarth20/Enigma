@@ -67,4 +67,20 @@ RSpec.describe Algorithm do
       expect(algorithm.d_key.length).to eq(2)
     end
   end
+
+  describe '#date_squared' do
+    it 'creates a squared numeric form of date' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.date_squared).to be_a(Integer)
+    end
+  end
+
+  describe '#date_offset' do
+    it 'takes last 4 digits of date squared' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.date_offset.to_s.length).to eq(4)
+    end
+  end
 end
