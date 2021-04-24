@@ -80,7 +80,23 @@ RSpec.describe Algorithm do
     it 'takes last 4 digits of date squared' do
       algorithm = Algorithm.new('040895', "hello world")
 
-      expect(algorithm.date_offset.to_s.length).to eq(4)
+      expect(algorithm.date_offset.length).to eq(4)
+    end
+  end
+
+  describe '#a_offset' do
+    it 'creates A offset' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.a_offset.to_s.length).to eq(1)
+    end
+  end
+
+  describe '#b_offset' do
+    it 'creates B offset' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.b_offset.to_s.length).to eq(1)
     end
   end
 end
