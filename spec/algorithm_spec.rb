@@ -99,4 +99,20 @@ RSpec.describe Algorithm do
       expect(algorithm.b_offset.to_s.length).to eq(1)
     end
   end
+
+  describe '#c_offset' do
+    it 'creates C offset' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.c_offset.to_s.length).to eq(1)
+    end
+  end
+
+  describe '#d_offset' do
+    it 'creates D offset' do
+      algorithm = Algorithm.new('040895', "hello world")
+
+      expect(algorithm.d_offset.to_s.length).to eq(1)
+    end
+  end
 end

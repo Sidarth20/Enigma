@@ -45,4 +45,12 @@ class Algorithm
   def b_offset
     date_offset[1].to_i
   end
+
+  def c_offset
+    date_offset[2].to_i
+  end
+
+  def d_offset
+    date_offset[3].to_i
+  end
 end
