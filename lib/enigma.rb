@@ -57,6 +57,18 @@ class Enigma
   end
 
   def a_shift
-    a = a_key.to_i + a_offset
+    a_key.to_i + a_offset
+  end
+
+  def b_shift
+    b_key.to_i + b_offset
+  end
+
+  def c_shift
+    c_key.to_i + c_offset
+  end
+
+  def d_shift
+    d_key.to_i + d_offset
   end
 end

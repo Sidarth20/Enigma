@@ -136,4 +136,28 @@ RSpec.describe Enigma do
       expect(enigma.a_shift).to be_a(Integer)
     end
   end
+
+  describe '#b_shift' do
+    it 'creates B shift' do
+      enigma = Enigma.new
+
+      expect(enigma.b_shift).to be_a(Integer)
+    end
+  end
+
+  describe '#c_shift' do
+    it 'creates C shift' do
+      enigma = Enigma.new
+
+      expect(enigma.c_shift).to be_a(Integer)
+    end
+  end
+
+  describe '#d_shift' do
+    it 'creates D shift' do
+      enigma = Enigma.new
+
+      expect(enigma.d_shift).to be_a(Integer)
+    end
+  end
 end
