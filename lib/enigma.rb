@@ -1,37 +1,35 @@
 class Enigma
-  attr_reader :date, :message
-
-  def initialize(date, message)
-    @date = date
-    @message = message.downcase
-  end
 
   def character_set
     array = ("a".."z").to_a << " "
   end
 
-  def random_num_generator
-    5.times.map {rand(0..4)}.join
-  end
+  # def encrypt(message, key, date)
+  #
+  # end
+  #
+  # def random_num_generator
+  #   5.times.map {rand(0..4)}.join
+  # end
 
   def a_key
-    number = random_num_generator
-    number[0..1]
+    message = "hello world"
+    message[0..1]
   end
 
   def b_key
-    number = random_num_generator
-    number[1..2]
+    message = "hello world"
+    message[1..2]
   end
 
   def c_key
-    number = random_num_generator
-    number[2..3]
+    message = "hello world"
+    message[2..3]
   end
 
   def d_key
-    number = random_num_generator
-    number[3..4]
+    message = "hello world"
+    message[3..4]
   end
 
   def date_squared
