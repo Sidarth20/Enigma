@@ -160,4 +160,13 @@ RSpec.describe Enigma do
       expect(enigma.d_shift).to be_a(Integer)
     end
   end
+
+  describe '#message_encrypt' do
+    it 'creates encryption for message' do
+      enigma = Enigma.new
+
+      # expect(enigma.message_encrypt).to be_a(Array)
+      expect(enigma.message_encrypt).to eq("")
+    end
+  end
 end
