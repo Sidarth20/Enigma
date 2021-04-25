@@ -33,7 +33,7 @@ class Enigma
   end
 
   def date_squared
-    @date.to_i ** 2
+    "040895".to_i ** 2
   end
 
   def date_offset

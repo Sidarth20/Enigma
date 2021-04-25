@@ -81,60 +81,59 @@ RSpec.describe Enigma do
     end
   end
   #
-  # describe '#date_squared' do
-  #   it 'creates a squared numeric form of date' do
-  #     enigma = Enigma.new
+  describe '#date_squared' do
+    it 'creates a squared numeric form of date' do
+      enigma = Enigma.new
+
+      expect(enigma.date_squared).to be_a(Integer)
+    end
+  end
   #
-  #     expect(enigma.date_squared).to be_a(Integer)
-  #   end
-  # end
+  describe '#date_offset' do
+    it 'takes last 4 digits of date squared' do
+      enigma = Enigma.new
+
+      expect(enigma.date_offset.length).to eq(4)
+    end
+  end
   #
-  # describe '#date_offset' do
-  #   it 'takes last 4 digits of date squared' do
-  #     enigma = Enigma.new
+  describe '#a_offset' do
+    it 'creates A offset' do
+      enigma = Enigma.new
+
+      expect(enigma.a_offset.to_s.length).to eq(1)
+    end
+  end
   #
-  #     expect(enigma.date_offset.length).to eq(4)
-  #   end
-  # end
+  describe '#b_offset' do
+    it 'creates B offset' do
+      enigma = Enigma.new
+
+      expect(enigma.b_offset.to_s.length).to eq(1)
+    end
+  end
   #
-  # describe '#a_offset' do
-  #   it 'creates A offset' do
-  #     enigma = Enigma.new
+  describe '#c_offset' do
+    it 'creates C offset' do
+      enigma = Enigma.new
+
+      expect(enigma.c_offset.to_s.length).to eq(1)
+    end
+  end
   #
-  #     expect(enigma.a_offset.to_s.length).to eq(1)
-  #   end
-  # end
+  describe '#d_offset' do
+    it 'creates D offset' do
+      enigma = Enigma.new
+
+      expect(enigma.d_offset.to_s.length).to eq(1)
+    end
+  end
   #
-  # describe '#b_offset' do
-  #   it 'creates B offset' do
-  #     enigma = Enigma.new
-  #
-  #     expect(enigma.b_offset.to_s.length).to eq(1)
-  #   end
-  # end
-  #
-  # describe '#c_offset' do
-  #   it 'creates C offset' do
-  #     enigma = Enigma.new
-  #
-  #     expect(enigma.c_offset.to_s.length).to eq(1)
-  #   end
-  # end
-  #
-  # describe '#d_offset' do
-  #   it 'creates D offset' do
-  #     enigma = Enigma.new
-  #
-  #     expect(enigma.d_offset.to_s.length).to eq(1)
-  #   end
-  # end
-  #
-  # describe '#a_shift' do
-  #   it 'creates A shift' do
-  #     enigma = Enigma.new
-  #     enigma.random_num_generator
-  #
-  #     expect(enigma.a_shift).to be_a(Integer)
-  #   end
-  # end
+  describe '#a_shift' do
+    it 'creates A shift' do
+      enigma = Enigma.new
+
+      expect(enigma.a_shift).to be_a(Integer)
+    end
+  end
 end
