@@ -4,7 +4,7 @@ class Enigma
     array = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key, date = Date.today.strftime('%m%d%y'))
     a_key(key)
     b_key(key)
     c_key(key)
@@ -14,12 +14,12 @@ class Enigma
     c_shift(key, date)
     d_shift(key, date)
     date_squared(date)
-    hash = {message: message_encrypt(message, key, date),
+    hash = {encryption: message_encrypt(message, key, date),
             key: key,
             date: date}
   end
 
-  def decrypt(message, key, date)
+  def decrypt(message, key, date = Date.today.strftime('%m%d%y'))
     a_key(key)
     b_key(key)
     c_key(key)
@@ -29,7 +29,7 @@ class Enigma
     c_shift(key, date)
     d_shift(key, date)
     date_squared(date)
-    hash = {message: message_decrypt(message, key, date),
+    hash = {decryption: message_decrypt(message, key, date),
             key: key,
             date: date}
   end
