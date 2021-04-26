@@ -72,34 +72,21 @@ class Enigma
     d_key.to_i + d_offset
   end
 
-  def message_encrypt
-    message = "hello world"
-    message_split = message.split('')
-    # ordinal_values = message.chars.map do |character|
-    #   character.ord
-    # end
-    # shifted = ordinal_values.map do |character|
-    #   if ordinal_values[0] || ordinal_values[4] || ordinal_values[8]
-    #     character + a_shift
-    #   elsif ordinal_values[1] || ordinal_values[5] || ordinal_values[9]
-    #     b = character + b_shift
-    #   elsif ordinal_values[2] || ordinal_values[6] || ordinal_values[10]
-    #     character + c_shift
-    #   elsif ordinal_values[3] || ordinal_values[7] || ordinal_values[11]
-    #     character + d_shift
-    #   end
-    # end
-    # new_shift = shifted.map do |character|
-    #   character.chr
-    # end.join
-    enum = character_set.to_enum
-    enum.with_index do |value, index|
-      message_split.map do |character|
-          # require 'pry'; binding.pry
-      if value == character
-        y = character_set.rotate(a_shift).shift
+  def message_encrypt(message)
+    shift_a = Hash[character_set.zip(character_set.rotate(a_shift))]
+    shift_b = Hash[character_set.zip(character_set.rotate(b_shift))]
+    shift_c = Hash[character_set.zip(character_set.rotate(c_shift))]
+    shift_d = Hash[character_set.zip(character_set.rotate(d_shift))]
+    message.chars.map.with_index do |letter, index|
+      if index % 4 == 0
+        shift_a[letter]
+      elsif index % 4 == 1
+        shift_b[letter]
+      elsif index % 4 == 2
+        shift_c[letter]
+      elsif index % 4 == 3
+        shift_d[letter]
       end
-    end
-    end
+    end.join
   end
 end

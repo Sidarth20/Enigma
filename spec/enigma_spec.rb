@@ -165,8 +165,9 @@ RSpec.describe Enigma do
     it 'creates encryption for message' do
       enigma = Enigma.new
 
-      # expect(enigma.message_encrypt).to be_a(Array)
-      expect(enigma.message_encrypt).to eq("")
+      expect(enigma.message_encrypt("hello world")).to be_a(String)
+      expect(enigma.message_encrypt("hello world")).to eq("keder ohulw")
+      expect(enigma.message_encrypt("sidarth")).to eq("viwuut ")
     end
   end
 end
