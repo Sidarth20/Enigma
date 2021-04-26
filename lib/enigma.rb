@@ -9,6 +9,12 @@ class Enigma
             key: key,
             date: date}
   end
+
+  def decrypt(message, key, date)
+    hash = {message: message_decrypt(message),
+            key: key,
+            date: date}
+  end
   #
   # def random_num_generator
   #   5.times.map {rand(0..4)}.join
