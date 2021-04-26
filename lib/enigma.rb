@@ -4,9 +4,11 @@ class Enigma
     array = ("a".."z").to_a << " "
   end
 
-  # def encrypt(message, key, date)
-  #
-  # end
+  def encrypt(message, key, date)
+    hash = {message: message_encrypt(message),
+            key: key,
+            date: date}
+  end
   #
   # def random_num_generator
   #   5.times.map {rand(0..4)}.join

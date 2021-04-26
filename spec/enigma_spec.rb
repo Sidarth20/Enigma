@@ -23,15 +23,6 @@ RSpec.describe Enigma do
     end
   end
 
-  # describe '#encrypt' do
-  #   it 'returns a hash with an encryption, key, & date' do
-  #     enigma = Enigma.new
-  #     enigma.encrypt("hello world", "02715", "040895")
-  #
-  #     expect(enigma.encrypt).to be_a(Hash)
-  #   end
-  # end
-
   # describe '#random_num_generator' do
   #   it 'generates a 5 digit random number' do
   #     enigma = Enigma.new
@@ -170,6 +161,17 @@ RSpec.describe Enigma do
       expect(enigma.message_decrypt("keder ohulw")).to be_a(String)
       expect(enigma.message_decrypt("keder ohulw")).to eq("hello world")
       expect(enigma.message_decrypt("viwuut ")).to eq("sidarth")
+    end
+  end
+
+  describe '#encrypt' do
+    it 'returns a hash with an encryption, key, & date' do
+      enigma = Enigma.new
+      expected = {message: "keder ohulw",
+                key: "02715",
+                date: "040895"}
+      expect(enigma.encrypt("hello world", "02715", "040895")).to be_a(Hash)
+      expect(enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
     end
   end
 end
