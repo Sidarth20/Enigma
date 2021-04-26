@@ -36,7 +36,7 @@ RSpec.describe Enigma do
     it 'creates the A key' do
       enigma = Enigma.new
 
-      expect(enigma.a_key.length).to eq(2)
+      expect(enigma.a_key("02715").length).to eq(2)
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Enigma do
     it 'creates the B key' do
       enigma = Enigma.new
 
-      expect(enigma.b_key.length).to eq(2)
+      expect(enigma.b_key("02715").length).to eq(2)
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe Enigma do
     it 'creates the C key' do
       enigma = Enigma.new
 
-      expect(enigma.c_key.length).to eq(2)
+      expect(enigma.c_key("02715").length).to eq(2)
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe Enigma do
     it 'creates the D key' do
       enigma = Enigma.new
 
-      expect(enigma.d_key.length).to eq(2)
+      expect(enigma.d_key("02715").length).to eq(2)
     end
   end
 
@@ -116,7 +116,7 @@ RSpec.describe Enigma do
     it 'creates A shift' do
       enigma = Enigma.new
 
-      expect(enigma.a_shift).to be_a(Integer)
+      expect(enigma.a_shift("02715")).to be_a(Integer)
     end
   end
 
@@ -124,7 +124,7 @@ RSpec.describe Enigma do
     it 'creates B shift' do
       enigma = Enigma.new
 
-      expect(enigma.b_shift).to be_a(Integer)
+      expect(enigma.b_shift("02715")).to be_a(Integer)
     end
   end
 
@@ -132,7 +132,7 @@ RSpec.describe Enigma do
     it 'creates C shift' do
       enigma = Enigma.new
 
-      expect(enigma.c_shift).to be_a(Integer)
+      expect(enigma.c_shift("02715")).to be_a(Integer)
     end
   end
 
@@ -140,7 +140,7 @@ RSpec.describe Enigma do
     it 'creates D shift' do
       enigma = Enigma.new
 
-      expect(enigma.d_shift).to be_a(Integer)
+      expect(enigma.d_shift("02715")).to be_a(Integer)
     end
   end
 
@@ -148,9 +148,9 @@ RSpec.describe Enigma do
     it 'creates encryption for message' do
       enigma = Enigma.new
 
-      expect(enigma.message_encrypt("hello world")).to be_a(String)
-      expect(enigma.message_encrypt("hello world")).to eq("keder ohulw")
-      expect(enigma.message_encrypt("sidarth")).to eq("viwuut ")
+      expect(enigma.message_encrypt("hello world", "02715")).to be_a(String)
+      expect(enigma.message_encrypt("hello world", "02715")).to eq("keder ohulw")
+      expect(enigma.message_encrypt("sidarth", "02715")).to eq("viwuut ")
     end
   end
 
@@ -158,9 +158,9 @@ RSpec.describe Enigma do
     it 'creates decryption for message' do
       enigma = Enigma.new
 
-      expect(enigma.message_decrypt("keder ohulw")).to be_a(String)
-      expect(enigma.message_decrypt("keder ohulw")).to eq("hello world")
-      expect(enigma.message_decrypt("viwuut ")).to eq("sidarth")
+      expect(enigma.message_decrypt("keder ohulw", "02715")).to be_a(String)
+      expect(enigma.message_decrypt("keder ohulw", "02715")).to eq("hello world")
+      expect(enigma.message_decrypt("viwuut ", "02715")).to eq("sidarth")
     end
   end
 

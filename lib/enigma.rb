@@ -5,13 +5,29 @@ class Enigma
   end
 
   def encrypt(message, key, date)
-    hash = {message: message_encrypt(message),
+    a_key(key)
+    b_key(key)
+    c_key(key)
+    d_key(key)
+    a_shift(key)
+    b_shift(key)
+    c_shift(key)
+    d_shift(key)
+    hash = {message: message_encrypt(message, key),
             key: key,
             date: date}
   end
 
   def decrypt(message, key, date)
-    hash = {message: message_decrypt(message),
+    a_key(key)
+    b_key(key)
+    c_key(key)
+    d_key(key)
+    a_shift(key)
+    b_shift(key)
+    c_shift(key)
+    d_shift(key)
+    hash = {message: message_decrypt(message, key),
             key: key,
             date: date}
   end
@@ -20,23 +36,19 @@ class Enigma
   #   5.times.map {rand(0..4)}.join
   # end
 
-  def a_key
-    key = "02715"
+  def a_key(key)
     key[0..1]
   end
 
-  def b_key
-    key = "02715"
+  def b_key(key)
     key[1..2]
   end
 
-  def c_key
-    key = "02715"
+  def c_key(key)
     key[2..3]
   end
 
-  def d_key
-    key = "02715"
+  def d_key(key)
     key[3..4]
   end
 
@@ -64,27 +76,27 @@ class Enigma
     date_offset[3].to_i
   end
 
-  def a_shift
-    a_key.to_i + a_offset
+  def a_shift(key)
+    a_key(key).to_i + a_offset
   end
 
-  def b_shift
-    b_key.to_i + b_offset
+  def b_shift(key)
+    b_key(key).to_i + b_offset
   end
 
-  def c_shift
-    c_key.to_i + c_offset
+  def c_shift(key)
+    c_key(key).to_i + c_offset
   end
 
-  def d_shift
-    d_key.to_i + d_offset
+  def d_shift(key)
+    d_key(key).to_i + d_offset
   end
 
-  def message_encrypt(message)
-    shift_a = Hash[character_set.zip(character_set.rotate(a_shift))]
-    shift_b = Hash[character_set.zip(character_set.rotate(b_shift))]
-    shift_c = Hash[character_set.zip(character_set.rotate(c_shift))]
-    shift_d = Hash[character_set.zip(character_set.rotate(d_shift))]
+  def message_encrypt(message, key)
+    shift_a = Hash[character_set.zip(character_set.rotate(a_shift(key)))]
+    shift_b = Hash[character_set.zip(character_set.rotate(b_shift(key)))]
+    shift_c = Hash[character_set.zip(character_set.rotate(c_shift(key)))]
+    shift_d = Hash[character_set.zip(character_set.rotate(d_shift(key)))]
     message.chars.map.with_index do |letter, index|
       if index % 4 == 0
         shift_a[letter]
@@ -98,11 +110,11 @@ class Enigma
     end.join
   end
 
-  def message_decrypt(message)
-    unshift_a = Hash[character_set.zip(character_set.rotate(-a_shift))]
-    unshift_b = Hash[character_set.zip(character_set.rotate(-b_shift))]
-    unshift_c = Hash[character_set.zip(character_set.rotate(-c_shift))]
-    unshift_d = Hash[character_set.zip(character_set.rotate(-d_shift))]
+  def message_decrypt(message, key)
+    unshift_a = Hash[character_set.zip(character_set.rotate(-a_shift(key)))]
+    unshift_b = Hash[character_set.zip(character_set.rotate(-b_shift(key)))]
+    unshift_c = Hash[character_set.zip(character_set.rotate(-c_shift(key)))]
+    unshift_d = Hash[character_set.zip(character_set.rotate(-d_shift(key)))]
     message.chars.map.with_index do |letter, index|
       if index % 4 == 0
         unshift_a[letter]
