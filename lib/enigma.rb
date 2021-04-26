@@ -89,4 +89,22 @@ class Enigma
       end
     end.join
   end
+
+  def message_decrypt(message)
+    unshift_a = Hash[character_set.zip(character_set.rotate(-a_shift))]
+    unshift_b = Hash[character_set.zip(character_set.rotate(-b_shift))]
+    unshift_c = Hash[character_set.zip(character_set.rotate(-c_shift))]
+    unshift_d = Hash[character_set.zip(character_set.rotate(-d_shift))]
+    message.chars.map.with_index do |letter, index|
+      if index % 4 == 0
+        unshift_a[letter]
+      elsif index % 4 == 1
+        unshift_b[letter]
+      elsif index % 4 == 2
+        unshift_c[letter]
+      elsif index % 4 == 3
+        unshift_d[letter]
+      end
+    end.join
+  end
 end

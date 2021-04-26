@@ -40,15 +40,7 @@ RSpec.describe Enigma do
   #   end
   # end
   #
-  # # describe '#a_shift' do
-  # #   it 'creates A shift' do
-  # #     enigma = Enigma.new
-  # #     enigma.random_num_generator
-  # #
-  # #     expect(enigma.a_shift).to be_a(Integer)
-  # #   end
-  # # end
-  #
+
   describe '#a_key' do
     it 'creates the A key' do
       enigma = Enigma.new
@@ -56,7 +48,7 @@ RSpec.describe Enigma do
       expect(enigma.a_key.length).to eq(2)
     end
   end
-  #
+
   describe '#b_key' do
     it 'creates the B key' do
       enigma = Enigma.new
@@ -64,7 +56,7 @@ RSpec.describe Enigma do
       expect(enigma.b_key.length).to eq(2)
     end
   end
-  #
+
   describe '#c_key' do
     it 'creates the C key' do
       enigma = Enigma.new
@@ -80,7 +72,7 @@ RSpec.describe Enigma do
       expect(enigma.d_key.length).to eq(2)
     end
   end
-  #
+
   describe '#date_squared' do
     it 'creates a squared numeric form of date' do
       enigma = Enigma.new
@@ -88,7 +80,7 @@ RSpec.describe Enigma do
       expect(enigma.date_squared).to be_a(Integer)
     end
   end
-  #
+
   describe '#date_offset' do
     it 'takes last 4 digits of date squared' do
       enigma = Enigma.new
@@ -96,7 +88,7 @@ RSpec.describe Enigma do
       expect(enigma.date_offset.length).to eq(4)
     end
   end
-  #
+
   describe '#a_offset' do
     it 'creates A offset' do
       enigma = Enigma.new
@@ -104,7 +96,7 @@ RSpec.describe Enigma do
       expect(enigma.a_offset.to_s.length).to eq(1)
     end
   end
-  #
+
   describe '#b_offset' do
     it 'creates B offset' do
       enigma = Enigma.new
@@ -112,7 +104,7 @@ RSpec.describe Enigma do
       expect(enigma.b_offset.to_s.length).to eq(1)
     end
   end
-  #
+
   describe '#c_offset' do
     it 'creates C offset' do
       enigma = Enigma.new
@@ -120,7 +112,7 @@ RSpec.describe Enigma do
       expect(enigma.c_offset.to_s.length).to eq(1)
     end
   end
-  #
+
   describe '#d_offset' do
     it 'creates D offset' do
       enigma = Enigma.new
@@ -128,7 +120,7 @@ RSpec.describe Enigma do
       expect(enigma.d_offset.to_s.length).to eq(1)
     end
   end
-  #
+
   describe '#a_shift' do
     it 'creates A shift' do
       enigma = Enigma.new
@@ -168,6 +160,16 @@ RSpec.describe Enigma do
       expect(enigma.message_encrypt("hello world")).to be_a(String)
       expect(enigma.message_encrypt("hello world")).to eq("keder ohulw")
       expect(enigma.message_encrypt("sidarth")).to eq("viwuut ")
+    end
+  end
+
+  describe '#message_decrypt' do
+    it 'creates decryption for message' do
+      enigma = Enigma.new
+
+      expect(enigma.message_decrypt("keder ohulw")).to be_a(String)
+      expect(enigma.message_decrypt("keder ohulw")).to eq("hello world")
+      expect(enigma.message_decrypt("viwuut ")).to eq("sidarth")
     end
   end
 end
