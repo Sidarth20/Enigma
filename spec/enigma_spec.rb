@@ -23,14 +23,13 @@ RSpec.describe Enigma do
     end
   end
 
-  # describe '#random_num_generator' do
-  #   it 'generates a 5 digit random number' do
-  #     enigma = Enigma.new
-  #
-  #     expect(enigma.random_num_generator.to_s.length).to eq(5)
-  #   end
-  # end
-  #
+  describe '#random_num_generator' do
+    it 'generates a 5 digit random number' do
+      enigma = Enigma.new
+
+      expect(enigma.random_num_generator.length).to eq(5)
+    end
+  end
 
   describe '#a_key' do
     it 'creates the A key' do
@@ -214,6 +213,18 @@ RSpec.describe Enigma do
 
       expect(enigma.decrypt(encrypted[:encryption], "02715")).to be_a(Hash)
       expect(enigma.decrypt(encrypted[:encryption], "02715")).to eq(expected2)
+    end
+  end
+
+  describe '#encrypt with generating random key & todays date' do
+    it 'returns a hash with a encryption, key, & date' do
+      enigma = Enigma.new
+      encrypted_hash = enigma.encrypt("hello world")
+      actual = encrypted_hash[:key]
+
+      expect(enigma.encrypt("hello world")).to be_a(Hash)
+      expect(actual).to be_a(String)
+      expect(actual.length).to eq(5)
     end
   end
 end

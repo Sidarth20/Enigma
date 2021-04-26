@@ -4,7 +4,7 @@ class Enigma
     array = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key, date = Date.today.strftime('%m%d%y'))
+  def encrypt(message, key = random_num_generator, date = Date.today.strftime('%m%d%y'))
     a_key(key)
     b_key(key)
     c_key(key)
@@ -33,10 +33,10 @@ class Enigma
             key: key,
             date: date}
   end
-  #
-  # def random_num_generator
-  #   5.times.map {rand(0..4)}.join
-  # end
+
+  def random_num_generator
+    5.times.map {rand(0..4)}.join
+  end
 
   def a_key(key)
     key[0..1]
