@@ -9,11 +9,12 @@ class Enigma
     b_key(key)
     c_key(key)
     d_key(key)
-    a_shift(key)
-    b_shift(key)
-    c_shift(key)
-    d_shift(key)
-    hash = {message: message_encrypt(message, key),
+    a_shift(key, date)
+    b_shift(key, date)
+    c_shift(key, date)
+    d_shift(key, date)
+    date_squared(date)
+    hash = {message: message_encrypt(message, key, date),
             key: key,
             date: date}
   end
@@ -23,11 +24,12 @@ class Enigma
     b_key(key)
     c_key(key)
     d_key(key)
-    a_shift(key)
-    b_shift(key)
-    c_shift(key)
-    d_shift(key)
-    hash = {message: message_decrypt(message, key),
+    a_shift(key, date)
+    b_shift(key, date)
+    c_shift(key, date)
+    d_shift(key, date)
+    date_squared(date)
+    hash = {message: message_decrypt(message, key, date),
             key: key,
             date: date}
   end
@@ -52,51 +54,51 @@ class Enigma
     key[3..4]
   end
 
-  def date_squared
-    "040895".to_i ** 2
+  def date_squared(date)
+    date.to_i ** 2
   end
 
-  def date_offset
-    date_squared.to_s[-4..-1]
+  def date_offset(date)
+    date_squared(date).to_s[-4..-1]
   end
 
-  def a_offset
-    date_offset[0].to_i
+  def a_offset(date)
+    date_offset(date)[0].to_i
   end
 
-  def b_offset
-    date_offset[1].to_i
+  def b_offset(date)
+    date_offset(date)[1].to_i
   end
 
-  def c_offset
-    date_offset[2].to_i
+  def c_offset(date)
+    date_offset(date)[2].to_i
   end
 
-  def d_offset
-    date_offset[3].to_i
+  def d_offset(date)
+    date_offset(date)[3].to_i
   end
 
-  def a_shift(key)
-    a_key(key).to_i + a_offset
+  def a_shift(key, date)
+    a_key(key).to_i + a_offset(date)
   end
 
-  def b_shift(key)
-    b_key(key).to_i + b_offset
+  def b_shift(key, date)
+    b_key(key).to_i + b_offset(date)
   end
 
-  def c_shift(key)
-    c_key(key).to_i + c_offset
+  def c_shift(key, date)
+    c_key(key).to_i + c_offset(date)
   end
 
-  def d_shift(key)
-    d_key(key).to_i + d_offset
+  def d_shift(key, date)
+    d_key(key).to_i + d_offset(date)
   end
 
-  def message_encrypt(message, key)
-    shift_a = Hash[character_set.zip(character_set.rotate(a_shift(key)))]
-    shift_b = Hash[character_set.zip(character_set.rotate(b_shift(key)))]
-    shift_c = Hash[character_set.zip(character_set.rotate(c_shift(key)))]
-    shift_d = Hash[character_set.zip(character_set.rotate(d_shift(key)))]
+  def message_encrypt(message, key, date)
+    shift_a = Hash[character_set.zip(character_set.rotate(a_shift(key, date)))]
+    shift_b = Hash[character_set.zip(character_set.rotate(b_shift(key, date)))]
+    shift_c = Hash[character_set.zip(character_set.rotate(c_shift(key, date)))]
+    shift_d = Hash[character_set.zip(character_set.rotate(d_shift(key, date)))]
     message.chars.map.with_index do |letter, index|
       if index % 4 == 0
         shift_a[letter]
@@ -110,11 +112,11 @@ class Enigma
     end.join
   end
 
-  def message_decrypt(message, key)
-    unshift_a = Hash[character_set.zip(character_set.rotate(-a_shift(key)))]
-    unshift_b = Hash[character_set.zip(character_set.rotate(-b_shift(key)))]
-    unshift_c = Hash[character_set.zip(character_set.rotate(-c_shift(key)))]
-    unshift_d = Hash[character_set.zip(character_set.rotate(-d_shift(key)))]
+  def message_decrypt(message, key, date)
+    unshift_a = Hash[character_set.zip(character_set.rotate(-a_shift(key, date)))]
+    unshift_b = Hash[character_set.zip(character_set.rotate(-b_shift(key, date)))]
+    unshift_c = Hash[character_set.zip(character_set.rotate(-c_shift(key, date)))]
+    unshift_d = Hash[character_set.zip(character_set.rotate(-d_shift(key, date)))]
     message.chars.map.with_index do |letter, index|
       if index % 4 == 0
         unshift_a[letter]

@@ -68,7 +68,7 @@ RSpec.describe Enigma do
     it 'creates a squared numeric form of date' do
       enigma = Enigma.new
 
-      expect(enigma.date_squared).to be_a(Integer)
+      expect(enigma.date_squared("040895")).to be_a(Integer)
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe Enigma do
     it 'takes last 4 digits of date squared' do
       enigma = Enigma.new
 
-      expect(enigma.date_offset.length).to eq(4)
+      expect(enigma.date_offset("040895").length).to eq(4)
     end
   end
 
@@ -84,7 +84,7 @@ RSpec.describe Enigma do
     it 'creates A offset' do
       enigma = Enigma.new
 
-      expect(enigma.a_offset.to_s.length).to eq(1)
+      expect(enigma.a_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -92,7 +92,7 @@ RSpec.describe Enigma do
     it 'creates B offset' do
       enigma = Enigma.new
 
-      expect(enigma.b_offset.to_s.length).to eq(1)
+      expect(enigma.b_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -100,7 +100,7 @@ RSpec.describe Enigma do
     it 'creates C offset' do
       enigma = Enigma.new
 
-      expect(enigma.c_offset.to_s.length).to eq(1)
+      expect(enigma.c_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -108,7 +108,7 @@ RSpec.describe Enigma do
     it 'creates D offset' do
       enigma = Enigma.new
 
-      expect(enigma.d_offset.to_s.length).to eq(1)
+      expect(enigma.d_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -116,7 +116,7 @@ RSpec.describe Enigma do
     it 'creates A shift' do
       enigma = Enigma.new
 
-      expect(enigma.a_shift("02715")).to be_a(Integer)
+      expect(enigma.a_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -124,7 +124,7 @@ RSpec.describe Enigma do
     it 'creates B shift' do
       enigma = Enigma.new
 
-      expect(enigma.b_shift("02715")).to be_a(Integer)
+      expect(enigma.b_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -132,7 +132,7 @@ RSpec.describe Enigma do
     it 'creates C shift' do
       enigma = Enigma.new
 
-      expect(enigma.c_shift("02715")).to be_a(Integer)
+      expect(enigma.c_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -140,7 +140,7 @@ RSpec.describe Enigma do
     it 'creates D shift' do
       enigma = Enigma.new
 
-      expect(enigma.d_shift("02715")).to be_a(Integer)
+      expect(enigma.d_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -148,9 +148,9 @@ RSpec.describe Enigma do
     it 'creates encryption for message' do
       enigma = Enigma.new
 
-      expect(enigma.message_encrypt("hello world", "02715")).to be_a(String)
-      expect(enigma.message_encrypt("hello world", "02715")).to eq("keder ohulw")
-      expect(enigma.message_encrypt("sidarth", "02715")).to eq("viwuut ")
+      expect(enigma.message_encrypt("hello world", "02715", "040895")).to be_a(String)
+      expect(enigma.message_encrypt("hello world", "02715", "040895")).to eq("keder ohulw")
+      expect(enigma.message_encrypt("sidarth", "02715", "040895")).to eq("viwuut ")
     end
   end
 
@@ -158,9 +158,9 @@ RSpec.describe Enigma do
     it 'creates decryption for message' do
       enigma = Enigma.new
 
-      expect(enigma.message_decrypt("keder ohulw", "02715")).to be_a(String)
-      expect(enigma.message_decrypt("keder ohulw", "02715")).to eq("hello world")
-      expect(enigma.message_decrypt("viwuut ", "02715")).to eq("sidarth")
+      expect(enigma.message_decrypt("keder ohulw", "02715", "040895")).to be_a(String)
+      expect(enigma.message_decrypt("keder ohulw", "02715", "040895")).to eq("hello world")
+      expect(enigma.message_decrypt("viwuut ", "02715", "040895")).to eq("sidarth")
     end
   end
 
