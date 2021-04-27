@@ -13,7 +13,7 @@ encrypted_text = enigma.encrypt(incoming_message)
 writer = File.open(ARGV[1], 'w')
 output = "Created '#{ARGV[1]}' with the key #{encrypted_text[:key]} and date #{encrypted_text[:date]}"
 
-writer.write(encrypted_text)
+writer.write(encrypted_text[:encryption])
 
 puts output
 

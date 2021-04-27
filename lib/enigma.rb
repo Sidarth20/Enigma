@@ -1,5 +1,4 @@
 class Enigma
-
   def character_set
     array = ("a".."z").to_a << " "
   end
