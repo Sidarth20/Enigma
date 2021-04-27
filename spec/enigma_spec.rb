@@ -23,20 +23,19 @@ RSpec.describe Enigma do
     end
   end
 
-  # describe '#random_num_generator' do
-  #   it 'generates a 5 digit random number' do
-  #     enigma = Enigma.new
-  #
-  #     expect(enigma.random_num_generator.to_s.length).to eq(5)
-  #   end
-  # end
-  #
+  describe '#random_num_generator' do
+    it 'generates a 5 digit random number' do
+      enigma = Enigma.new
+
+      expect(enigma.random_num_generator.length).to eq(5)
+    end
+  end
 
   describe '#a_key' do
     it 'creates the A key' do
       enigma = Enigma.new
 
-      expect(enigma.a_key.length).to eq(2)
+      expect(enigma.a_key("02715").length).to eq(2)
     end
   end
 
@@ -44,7 +43,7 @@ RSpec.describe Enigma do
     it 'creates the B key' do
       enigma = Enigma.new
 
-      expect(enigma.b_key.length).to eq(2)
+      expect(enigma.b_key("02715").length).to eq(2)
     end
   end
 
@@ -52,7 +51,7 @@ RSpec.describe Enigma do
     it 'creates the C key' do
       enigma = Enigma.new
 
-      expect(enigma.c_key.length).to eq(2)
+      expect(enigma.c_key("02715").length).to eq(2)
     end
   end
 
@@ -60,7 +59,7 @@ RSpec.describe Enigma do
     it 'creates the D key' do
       enigma = Enigma.new
 
-      expect(enigma.d_key.length).to eq(2)
+      expect(enigma.d_key("02715").length).to eq(2)
     end
   end
 
@@ -68,7 +67,7 @@ RSpec.describe Enigma do
     it 'creates a squared numeric form of date' do
       enigma = Enigma.new
 
-      expect(enigma.date_squared).to be_a(Integer)
+      expect(enigma.date_squared("040895")).to be_a(Integer)
     end
   end
 
@@ -76,7 +75,7 @@ RSpec.describe Enigma do
     it 'takes last 4 digits of date squared' do
       enigma = Enigma.new
 
-      expect(enigma.date_offset.length).to eq(4)
+      expect(enigma.date_offset("040895").length).to eq(4)
     end
   end
 
@@ -84,7 +83,7 @@ RSpec.describe Enigma do
     it 'creates A offset' do
       enigma = Enigma.new
 
-      expect(enigma.a_offset.to_s.length).to eq(1)
+      expect(enigma.a_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -92,7 +91,7 @@ RSpec.describe Enigma do
     it 'creates B offset' do
       enigma = Enigma.new
 
-      expect(enigma.b_offset.to_s.length).to eq(1)
+      expect(enigma.b_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -100,7 +99,7 @@ RSpec.describe Enigma do
     it 'creates C offset' do
       enigma = Enigma.new
 
-      expect(enigma.c_offset.to_s.length).to eq(1)
+      expect(enigma.c_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -108,7 +107,7 @@ RSpec.describe Enigma do
     it 'creates D offset' do
       enigma = Enigma.new
 
-      expect(enigma.d_offset.to_s.length).to eq(1)
+      expect(enigma.d_offset("040895").to_s.length).to eq(1)
     end
   end
 
@@ -116,7 +115,7 @@ RSpec.describe Enigma do
     it 'creates A shift' do
       enigma = Enigma.new
 
-      expect(enigma.a_shift).to be_a(Integer)
+      expect(enigma.a_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -124,7 +123,7 @@ RSpec.describe Enigma do
     it 'creates B shift' do
       enigma = Enigma.new
 
-      expect(enigma.b_shift).to be_a(Integer)
+      expect(enigma.b_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -132,7 +131,7 @@ RSpec.describe Enigma do
     it 'creates C shift' do
       enigma = Enigma.new
 
-      expect(enigma.c_shift).to be_a(Integer)
+      expect(enigma.c_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -140,7 +139,7 @@ RSpec.describe Enigma do
     it 'creates D shift' do
       enigma = Enigma.new
 
-      expect(enigma.d_shift).to be_a(Integer)
+      expect(enigma.d_shift("02715", "040895")).to be_a(Integer)
     end
   end
 
@@ -148,9 +147,9 @@ RSpec.describe Enigma do
     it 'creates encryption for message' do
       enigma = Enigma.new
 
-      expect(enigma.message_encrypt("hello world")).to be_a(String)
-      expect(enigma.message_encrypt("hello world")).to eq("keder ohulw")
-      expect(enigma.message_encrypt("sidarth")).to eq("viwuut ")
+      expect(enigma.message_encrypt("hello world", "02715", "040895")).to be_a(String)
+      expect(enigma.message_encrypt("hello world", "02715", "040895")).to eq("keder ohulw")
+      expect(enigma.message_encrypt("sidarth", "02715", "040895")).to eq("viwuut ")
     end
   end
 
@@ -158,16 +157,16 @@ RSpec.describe Enigma do
     it 'creates decryption for message' do
       enigma = Enigma.new
 
-      expect(enigma.message_decrypt("keder ohulw")).to be_a(String)
-      expect(enigma.message_decrypt("keder ohulw")).to eq("hello world")
-      expect(enigma.message_decrypt("viwuut ")).to eq("sidarth")
+      expect(enigma.message_decrypt("keder ohulw", "02715", "040895")).to be_a(String)
+      expect(enigma.message_decrypt("keder ohulw", "02715", "040895")).to eq("hello world")
+      expect(enigma.message_decrypt("viwuut ", "02715", "040895")).to eq("sidarth")
     end
   end
 
   describe '#encrypt' do
     it 'returns a hash with an encryption, key, & date' do
       enigma = Enigma.new
-      expected = {message: "keder ohulw",
+      expected = {encryption: "keder ohulw",
                 key: "02715",
                 date: "040895"}
       expect(enigma.encrypt("hello world", "02715", "040895")).to be_a(Hash)
@@ -178,11 +177,54 @@ RSpec.describe Enigma do
   describe '#decrypt' do
     it 'returns a hash with a decryption, key, & date' do
       enigma = Enigma.new
-      expected = {message: "hello world",
+      expected = {decryption: "hello world",
                 key: "02715",
                 date: "040895"}
       expect(enigma.decrypt("keder ohulw", "02715", "040895")).to be_a(Hash)
       expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
+    end
+  end
+
+  describe '#encrypt with todays date' do
+    it 'returns a hash with a encryption, key, & date' do
+      enigma = Enigma.new
+      expected = {encryption: "skfazfqdbry",
+                key: "02715",
+                date: "042621"}
+      expect(enigma.encrypt("hello world", "02715")).to be_a(Hash)
+      expect(enigma.encrypt("hello world", "02715")).to eq(expected)
+    end
+  end
+
+  describe '#decrypt with todays date' do
+    it 'returns a hash with a decryption, key, & date' do
+      enigma = Enigma.new
+      expected = {encryption: "skfazfqdbry",
+                key: "02715",
+                date: "042621"}
+      expect(enigma.encrypt("hello world", "02715")).to be_a(Hash)
+      expect(enigma.encrypt("hello world", "02715")).to eq(expected)
+
+      encrypted = enigma.encrypt("hello world", "02715")
+
+      expected2 = {decryption: "hello world",
+                key: "02715",
+                date: "042621"}
+
+      expect(enigma.decrypt(encrypted[:encryption], "02715")).to be_a(Hash)
+      expect(enigma.decrypt(encrypted[:encryption], "02715")).to eq(expected2)
+    end
+  end
+
+  describe '#encrypt with generating random key & todays date' do
+    it 'returns a hash with a encryption, key, & date' do
+      enigma = Enigma.new
+      encrypted_hash = enigma.encrypt("hello world")
+      actual = encrypted_hash[:key]
+
+      expect(enigma.encrypt("hello world")).to be_a(Hash)
+      expect(actual).to be_a(String)
+      expect(actual.length).to eq(5)
     end
   end
 end
