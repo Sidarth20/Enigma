@@ -8,7 +8,11 @@ message.close
 
 key = ARGV[2]
 
-date = ARGV[3]
+if ARGV[3].nil?
+  date = Date.today.strftime('%m%d%y')
+else
+  date = ARGV[3]
+end
 
 decrypted_text = enigma.decrypt(incoming_message, key, date)
 

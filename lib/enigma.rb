@@ -4,6 +4,7 @@ class Enigma
   end
 
   def encrypt(message, key = random_num_generator, date = Date.today.strftime('%m%d%y'))
+    message = message.downcase
     keys(key)
     shifts(key, date)
     date_squared(date)
@@ -13,6 +14,7 @@ class Enigma
   end
 
   def decrypt(message, key, date = Date.today.strftime('%m%d%y'))
+    message = message.downcase
     keys(key)
     shifts(key, date)
     date_squared(date)

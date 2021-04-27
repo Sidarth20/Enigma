@@ -139,9 +139,9 @@ RSpec.describe Enigma do
   describe '#encrypt with todays date' do
     it 'returns a hash with a encryption, key, & date' do
       enigma = Enigma.new
-      expected = {encryption: "skfazfqdbry",
+      expected = {encryption: "mmfathqdwty",
                 key: "02715",
-                date: "042621"}
+                date: "042721"}
       expect(enigma.encrypt("hello world", "02715")).to be_a(Hash)
       expect(enigma.encrypt("hello world", "02715")).to eq(expected)
     end
@@ -150,9 +150,9 @@ RSpec.describe Enigma do
   describe '#decrypt with todays date' do
     it 'returns a hash with a decryption, key, & date' do
       enigma = Enigma.new
-      expected = {encryption: "skfazfqdbry",
+      expected = {encryption: "mmfathqdwty",
                 key: "02715",
-                date: "042621"}
+                date: "042721"}
       expect(enigma.encrypt("hello world", "02715")).to be_a(Hash)
       expect(enigma.encrypt("hello world", "02715")).to eq(expected)
 
@@ -160,7 +160,7 @@ RSpec.describe Enigma do
 
       expected2 = {decryption: "hello world",
                 key: "02715",
-                date: "042621"}
+                date: "042721"}
 
       expect(enigma.decrypt(encrypted[:encryption], "02715")).to be_a(Hash)
       expect(enigma.decrypt(encrypted[:encryption], "02715")).to eq(expected2)
